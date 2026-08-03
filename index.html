@@ -9,6 +9,8 @@
             --card-color: white; /* كروت بيضا */
             --text-color: #111; /* كلام اسود */
             --main-color: #0066ff; /* ازرق */
+            --green: #10b981; /* اخضر */
+            --red: #ef4444; /* احمر */
         }
         body.dark { /* دارك مود */
             --bg-color: #0f1115; /* سودا */
@@ -26,13 +28,13 @@
             padding: 0; /* شيل المسافة */
         }
         #loader { /* شاشة التحميل */
-            position: fixed; /* ثابتة فوق كل حاجة */
-            top: 0; left: 0; /* من فوق خالص */
+            position: fixed; /* ثابتة */
+            top: 0; left: 0; /* من فوق */
             width: 100%; height: 100%; /* مالية الشاشة */
             background-color: var(--bg-color); /* لون الخلفية */
             display: flex; /* في النص */
-            justify-content: center; /* في النص افقي */
-            align-items: center; /* في النص عمودي */
+            justify-content: center; /* افقي */
+            align-items: center; /* عمودي */
             z-index: 9999; /* فوق كل حاجة */
             font-size: 24px; /* كبير */
             font-weight: bold; /* تخين */
@@ -56,7 +58,7 @@
             50% { transform: translateY(-10px); } /* فوق */
             100% { transform: translateY(0px); } /* عادي تاني */
         }
-     .typing { /* الكتابة اللي بتتكتب لوحدها */
+      .typing { /* الكتابة اللي بتتكتب لوحدها */
             border-right: 3px solid white; /* مؤشر كتابة */
             animation: blink 0.7s infinite; /* بيطفي وينور */
         }
@@ -99,48 +101,39 @@
         }
         button:hover { /* لما تحط الماوس */
             transform: scale(1.05); /* يكبر */
-            box-shadow: 0 5px 15px rgba(0,102,255,0.4); /* ظل ازرق */
         }
         section { /* كل سكشن */
             margin: 40px 0; /* مسافة */
-            opacity: 0; /* مخفي في الاول */
-            transform: translateY(20px); /* نازل لتحت */
-            animation: fadeUp 0.8s forwards; /* انيميشن يطلع */
         }
-        section:nth-child(1) { animation-delay: 0.2s; } /* اول سكشن */
-        section:nth-child(2) { animation-delay: 0.4s; } /* تاني سكشن */
-        section:nth-child(3) { animation-delay: 0.6s; } /* تالت سكشن */
-        @keyframes fadeUp { /* انيميشن الظهور */
-            to { opacity: 1; transform: translateY(0); } /* يظهر ويطلع */
-        }
-     .calculator,.todo-box,.contact-box,.stats-box,.timeline-box { /* بوكسات - زودنا timeline-box جديد */
+     .calculator,.todo-box,.contact-box,.stats-box,.timeline-box,.pharma-box,.shortcuts-box { /* بوكسات - زودنا pharma و shortcuts */
             background-color: var(--card-color); /* متغير */
             padding: 25px; /* مسافة */
             border-radius: 20px; /* حواف */
             margin: 20px auto; /* في النص */
-            width: 380px; /* عرض */
-            max-width: 90%; /* موبايل */
+            width: 400px; /* عرض */
+            max-width: 95%; /* موبايل */
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ظل */
+            text-align: right; /* يمين عشان المحاسب */
         }
-      .stat-number { /* رقم الاحصائية */
+     .stat-number { /* رقم الاحصائية */
             font-size: 40px; /* كبير جدا */
             font-weight: bold; /* تخين */
             color: var(--main-color); /* ازرق */
             display: block; /* سطر لوحده */
         }
-      .stat-label { /* وصف الاحصائية */
+     .stat-label { /* وصف الاحصائية */
             font-size: 14px; /* صغير */
             color: gray; /* رمادي */
         }
-      .timeline-item { /* كل حدث في التايملاين - جديد كله */
+     .timeline-item { /* كل حدث في التايملاين */
             text-align: right; /* يمين */
-            border-right: 4px solid var(--main-color); /* خط ازرق على اليمين */
+            border-right: 4px solid var(--main-color); /* خط ازرق */
             padding-right: 15px; /* مسافة من الخط */
-            margin: 20px 0; /* مسافة فوق وتحت */
+            margin: 20px 0; /* مسافة */
             position: relative; /* عشان النقطة */
         }
-      .timeline-item::before { /* النقطة المدورة - جديد */
-            content: ""; /* محتوى فاضي */
+     .timeline-item::before { /* النقطة المدورة */
+            content: ""; /* فاضي */
             position: absolute; /* مطلق */
             right: -10px; /* برة شوية */
             top: 5px; /* من فوق */
@@ -150,23 +143,55 @@
             border-radius: 50%; /* مدور */
             border: 3px solid white; /* برواز ابيض */
         }
-      .timeline-date { /* تاريخ الحدث - جديد */
+     .timeline-date { /* تاريخ الحدث */
             font-size: 12px; /* صغير */
             color: var(--main-color); /* ازرق */
             font-weight: bold; /* تخين */
         }
-      .timeline-title { /* عنوان الحدث - جديد */
+     .timeline-title { /* عنوان الحدث */
             font-size: 16px; /* وسط */
             font-weight: bold; /* تخين */
             margin: 5px 0; /* مسافة */
         }
-      .timeline-desc { /* وصف الحدث - جديد */
+     .timeline-desc { /* وصف الحدث */
             font-size: 13px; /* صغير */
             color: gray; /* رمادي */
         }
-        input, textarea { /* الانبوت */
+      .shortcut-item { /* كل اختصار - جديد */
+            display: flex; /* رص */
+            justify-content: space-between; /* يمين وشمال */
+            background-color: var(--bg-color); /* خلفية */
+            padding: 10px; /* مسافة */
+            margin: 6px 0; /* مسافة */
+            border-radius: 8px; /* حواف */
+            font-size: 13px; /* صغير */
+            cursor: pointer; /* ايد */
+        }
+      .shortcut-key { /* زر الاختصار - جديد */
+            background-color: #222; /* غامق */
+            color: white; /* ابيض */
+            padding: 3px 8px; /* حجم */
+            border-radius: 5px; /* حواف */
+            font-family: monospace; /* خط كود */
+        }
+      .pharma-grid { /* شبكة المحاسب - جديد */
+            display: grid; /* شبكة */
+            grid-template-columns: 1fr 1fr; /* عمودين */
+            gap: 10px; /* مسافة */
+            margin: 15px 0; /* مسافة */
+        }
+      .pharma-stat { /* احصائية صيدلية - جديد */
+            background-color: var(--bg-color); /* خلفية */
+            padding: 15px; /* مسافة */
+            border-radius: 12px; /* حواف */
+            text-align: center; /* في النص */
+        }
+      .pharma-stat.green { border-bottom: 4px solid var(--green); } /* اخضر */
+      .pharma-stat.red { border-bottom: 4px solid var(--red); } /* احمر */
+      .pharma-stat.blue { border-bottom: 4px solid var(--main-color); } /* ازرق */
+        input, textarea, select { /* الانبوت */
             padding: 12px; /* حجم */
-            margin: 8px 0; /* مسافة */
+            margin: 6px 0; /* مسافة */
             border-radius: 10px; /* حواف */
             border: 1px solid #ddd; /* برواز */
             width: 90%; /* عرض كبير */
@@ -174,12 +199,12 @@
             color: var(--text-color); /* كلام */
             font-family: Arial; /* خط */
         }
-        textarea { height: 80px; resize: none; }
-     .op-btn { width: 65px; background-color: #222; }
-     .todo-box ul { list-style: none; padding: 0; }
-     .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-     .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
-     .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+        textarea { height: 60px; resize: none; }
+      .op-btn { width: 65px; background-color: #222; }
+      .todo-box ul, .pharma-box ul { list-style: none; padding: 0; }
+      .todo-box li, .pharma-box li { background-color: var(--bg-color); padding: 10px; margin: 6px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+      .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
+      .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
         @media (max-width: 600px) {.cards { flex-direction: column; align-items: center; }.card { width: 80%; } }
     </style>
 </head>
@@ -189,79 +214,105 @@
     <header> <!-- Hero Section -->
         <button onclick="toggleDark()" style="position: absolute; top: 15px; left: 15px; background-color: rgba(255,255,255,0.2);">🌙</button> <!-- دارك مود -->
         <img src="https://via.placeholder.com/200" alt="دي صورتي"> <!-- صورتي -->
-        <h1 id="title"><span id="typingText"></span><span class="typing"></span></h1> <!-- مكان الكتابة المتحركة -->
+        <h1 id="title"><span id="typingText"></span><span class="typing"></span></h1> <!-- كتابة متحركة -->
         <p>Front-End Developer | بتعلم وبعمل مواقع</p> <!-- وظيفة -->
-        <p style="margin-top: 15px;"> <!-- لينكات -->
-            <a href="https://github.com" style="color: white; margin: 0 10px; text-decoration: none;">GitHub</a> |
-            <a href="https://google.com" style="color: white; margin: 0 10px; text-decoration: none;">LinkedIn</a>
-        </p>
         <br>
-        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">تواصل معايا</button> <!-- زرار بينزل للفورم -->
+        <button onclick="document.getElementById('pharma').scrollIntoView({behavior: 'smooth'})">💊 مشروع الصيدلية الجديد</button> <!-- زرار جديد -->
     </header>
 
     <main> <!-- جسم الموقع -->
-        <section> <!-- مهاراتي -->
-            <h2>مهاراتي</h2> <!-- عنوان -->
-            <div class="cards"> <!-- الكروت -->
-                <div class="card">💻<br>HTML</div> <!-- HTML -->
-                <div class="card">🎨<br>CSS</div> <!-- CSS -->
-                <div class="card">⚡<br>JavaScript</div> <!-- JS -->
-                <div class="card">🔥<br>API</div> <!-- API -->
+
+        <section class="shortcuts-box"> <!-- بوكس اختصارات فيجوال استوديو الجديد - جديد كله -->
+            <span class="project-tag" style="background-color: #0ea5e9;">مهم للمذاكرة</span> <!-- تاج -->
+            <h2>⌨️ اختصارات Visual Studio Code</h2> <!-- عنوان -->
+            <p style="font-size:12px; color:gray;">دوس على الاختصار عشان تجربه</p> <!-- وصف -->
+            <input type="text" id="shortcutSearch" placeholder="🔍 ابحث عن اختصار..." onkeyup="filterShortcuts()" style="text-align:right;"> <!-- بحث -->
+            <div id="shortcutsList"> <!-- لستة الاختصارات -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>نسخ السطر</span><span class="shortcut-key">Ctrl + C</span></div> <!-- نسخ -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>قص السطر</span><span class="shortcut-key">Ctrl + X</span></div> <!-- قص -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>لصق</span><span class="shortcut-key">Ctrl + V</span></div> <!-- لصق -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>تراجع</span><span class="shortcut-key">Ctrl + Z</span></div> <!-- تراجع -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>حفظ</span><span class="shortcut-key">Ctrl + S</span></div> <!-- حفظ -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>بحث في الملف</span><span class="shortcut-key">Ctrl + F</span></div> <!-- بحث -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>تحديد الكل</span><span class="shortcut-key">Ctrl + A</span></div> <!-- تحديد -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>نسخ السطر لتحت</span><span class="shortcut-key">Alt + Shift + ↓</span></div> <!-- نسخ لتحت - مهم -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>مسح سطر كامل</span><span class="shortcut-key">Ctrl + Shift + K</span></div> <!-- مسح - مهم -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>تحريك سطر لفوق/تحت</span><span class="shortcut-key">Alt + ↑ / ↓</span></div> <!-- تحريك - مهم -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>تعليق سطر</span><span class="shortcut-key">Ctrl + /</span></div> <!-- تعليق - مهم جدا -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>فتح لوحة الاوامر</span><span class="shortcut-key">Ctrl + Shift + P</span></div> <!-- اوامر -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>تقسيم الشاشة</span><span class="shortcut-key">Ctrl + \</span></div> <!-- تقسيم -->
+                <div class="shortcut-item" onclick="copyShortcut(this)"><span>تكبير/تصغير الكود</span><span class="shortcut-key">Ctrl + + / -</span></div> <!-- تكبير -->
             </div>
+            <p id="shortcutMsg" style="font-size:12px; color:green; margin-top:10px;"></p> <!-- رسالة -->
         </section>
 
-        <section class="stats-box"> <!-- بوكس الاحصائيات -->
+        <section id="pharma" class="pharma-box"> <!-- مشروع محاسب صيدلي كامل - جديد كله -->
+            <span class="project-tag" style="background-color: var(--green);">مشروع جديد - محاسب صيدلي</span> <!-- تاج -->
+            <h2 style="text-align:center;">💊 نظام محاسبة صيدلية</h2> <!-- عنوان -->
+            <p style="text-align:center; font-size:12px; color:gray;">للمبيعات والشيفتات والفواتير</p> <!-- وصف -->
+
+            <div class="pharma-grid"> <!-- احصائيات سريعة -->
+                <div class="pharma-stat green"> <!-- اجمالي مبيعات -->
+                    <span id="totalSales" style="font-size:22px; font-weight:bold; color:var(--green);">0</span> <!-- رقم -->
+                    <br><span style="font-size:12px;">اجمالي مبيعات</span> <!-- وصف -->
+                </div>
+                <div class="pharma-stat red"> <!-- اجمالي مصاريف -->
+                    <span id="totalExpenses" style="font-size:22px; font-weight:bold; color:var(--red);">0</span> <!-- رقم -->
+                    <br><span style="font-size:12px;">مصاريف</span> <!-- وصف -->
+                </div>
+                <div class="pharma-stat blue"> <!-- صافي ربح -->
+                    <span id="netProfit" style="font-size:22px; font-weight:bold; color:var(--main-color);">0</span> <!-- رقم -->
+                    <br><span style="font-size:12px;">صافي ربح</span> <!-- وصف -->
+                </div>
+                <div class="pharma-stat green"> <!-- عدد فواتير -->
+                    <span id="invoiceCount" style="font-size:22px; font-weight:bold;">0</span> <!-- رقم -->
+                    <br><span style="font-size:12px;">فاتورة</span> <!-- وصف -->
+                </div>
+            </div>
+
+            <h3 style="text-align:center; margin-top:20px;">➕ اضافة فاتورة جديدة</h3> <!-- عنوان اضافة -->
+            <select id="invoiceType"> <!-- نوع الفاتورة - جديد -->
+                <option value="sale">💰 مبيعات</option> <!-- مبيعات -->
+                <option value="expense">💸 مصروف / مرتجع</option> <!-- مصروف -->
+            </select> <!-- نهاية الاختيارات -->
+            <input type="number" id="invoiceAmount" placeholder="المبلغ بالجنيه"> <!-- مبلغ -->
+            <input type="text" id="invoiceNote" placeholder="ملاحظة - اسم الدواء مثلا"> <!-- ملاحظة -->
+            <button onclick="addInvoice()" style="width:95%; background-color:var(--green);">اضافة الفاتورة</button> <!-- زرار اضافة -->
+
+            <h3 style="text-align:center; margin-top:20px;">⏰ الشيفت</h3> <!-- عنوان شيفت -->
+            <div style="text-align:center;"> <!-- في النص -->
+                <button id="shiftBtn" onclick="toggleShift()" style="background-color:#f59e0b;">ابدأ شيفت جديد</button> <!-- زرار شيفت -->
+                <p id="shiftStatus" style="font-size:12px; color:gray; margin-top:8px;">مفيش شيفت شغال</p> <!-- حالة الشيفت -->
+            </div>
+
+            <h3 style="margin-top:20px;">📋 الفواتير اليوم</h3> <!-- عنوان فواتير -->
+            <ul id="invoiceList"></ul> <!-- لستة الفواتير -->
+
+            <button onclick="clearDay()" style="width:95%; background-color:var(--red); margin-top:15px;">🗑️ تصفير اليوم (اقفال حساب)</button> <!-- تصفير -->
+        </section>
+
+        <section class="stats-box"> <!-- احصائيات -->
             <span class="project-tag" style="background-color: #f59e0b;">احصائياتي</span> <!-- تاج -->
             <h2>ارقامي</h2> <!-- عنوان -->
-            <div class="cards"> <!-- كروت الارقام -->
-                <div class="card"> <!-- كارت زوار -->
-                    <span class="stat-number" id="visitCount">0</span> <!-- عدد الزوار -->
-                    <span class="stat-label">زائر للموقع</span> <!-- وصف -->
-                </div>
-                <div class="card"> <!-- كارت مشاريع -->
-                    <span class="stat-number" id="projectCount">0</span> <!-- عدد المشاريع -->
-                    <span class="stat-label">مشروع</span> <!-- وصف -->
-                </div>
-                <div class="card"> <!-- كارت ساعات -->
-                    <span class="stat-number" id="codeHours">0</span> <!-- ساعات كود -->
-                    <span class="stat-label">ساعة كود</span> <!-- وصف -->
-                </div>
+            <div class="cards"> <!-- كروت -->
+                <div class="card"><span class="stat-number" id="visitCount">0</span><span class="stat-label">زائر</span></div> <!-- زوار -->
+                <div class="card"><span class="stat-number" id="projectCount">0</span><span class="stat-label">مشروع</span></div> <!-- مشاريع -->
+                <div class="card"><span class="stat-number" id="codeHours">0</span><span class="stat-label">ساعة كود</span></div> <!-- ساعات -->
             </div>
         </section>
 
-        <section class="timeline-box"> <!-- بوكس التايملاين الجديد - جديد كله -->
-            <span class="project-tag" style="background-color: #8b5cf6;">رحلتي</span> <!-- تاج -->
-            <h2>رحلتي في البرمجة</h2> <!-- عنوان -->
-            <div class="timeline-item"> <!-- حدث 1 -->
-                <div class="timeline-date">يناير 2024</div> <!-- تاريخ -->
-                <div class="timeline-title">بدأت اتعلم HTML</div> <!-- عنوان -->
-                <div class="timeline-desc">اول مرة اكتب كود وافتحه في المتصفح</div> <!-- وصف -->
-            </div>
-            <div class="timeline-item"> <!-- حدث 2 -->
-                <div class="timeline-date">مارس 2024</div> <!-- تاريخ -->
-                <div class="timeline-title">اتعلمت CSS</div> <!-- عنوان -->
-                <div class="timeline-desc">خليت موقعي ملون وشكله حلو</div> <!-- وصف -->
-            </div>
-            <div class="timeline-item"> <!-- حدث 3 -->
-                <div class="timeline-date">يونيو 2024</div> <!-- تاريخ -->
-                <div class="timeline-title">دخلت JavaScript</div> <!-- عنوان -->
-                <div class="timeline-desc">الموقع بقى بيتفاعل وبيحسب ويخزن</div> <!-- وصف -->
-            </div>
-            <div class="timeline-item"> <!-- حدث 4 -->
-                <div class="timeline-date">اغسطس 2026 - النهارده</div> <!-- تاريخ -->
-                <div class="timeline-title">عملت Portfolio كامل</div> <!-- عنوان -->
-                <div class="timeline-desc">موقع فيه API ودارك مود وتاسكات وكل حاجة من على الفون</div> <!-- وصف -->
-            </div>
+        <section class="todo-box"> <!-- قايمة مهام -->
+            <span class="project-tag">مشروع 2</span> <!-- تاج -->
+            <h2>قايمة مهامي</h2> <!-- عنوان -->
+            <p id="taskCounter" style="font-size: 14px; color: gray;">عندك 0 مهام</p> <!-- عداد -->
+            <input type="text" id="taskInput" placeholder="اكتب مهمة جديدة" style="width: 200px;"> <!-- انبوت -->
+            <button onclick="addTask()">اضافة</button> <!-- اضافة -->
+            <ul id="taskList"></ul> <!-- اللستة -->
         </section>
 
-        <section> <!-- مشاريعي -->
-            <h2>مشاريعي</h2> <!-- عنوان -->
-            <p style="color: gray;">دول المشاريع اللي عملتها وانا بتعلم في الـ Visual</p> <!-- وصف -->
-        </section>
-
-        <section class="calculator"> <!-- مشروع 1 -->
+        <section class="calculator"> <!-- آلة حاسبة -->
             <span class="project-tag">مشروع 1</span> <!-- تاج -->
-            <h2>آلة حاسبة بتاعتي</h2> <!-- عنوان -->
+            <h2>آلة حاسبة</h2> <!-- عنوان -->
             <input type="number" id="num1" placeholder="رقم 1"> <!-- رقم 1 -->
             <input type="number" id="num2" placeholder="رقم 2"> <!-- رقم 2 -->
             <br>
@@ -271,40 +322,10 @@
             <button class="op-btn" onclick="calculate('/')">/</button> <!-- قسمة -->
             <h3 id="result">النتيجة: 0</h3> <!-- النتيجة -->
         </section>
-
-        <section class="todo-box"> <!-- مشروع 2 -->
-            <span class="project-tag">مشروع 2</span> <!-- تاج -->
-            <h2>قايمة مهامي الاحترافية</h2> <!-- عنوان -->
-            <p id="taskCounter" style="font-size: 14px; color: gray;">عندك 0 مهام</p> <!-- عداد -->
-            <input type="text" id="taskInput" placeholder="اكتب مهمة جديدة" style="width: 200px;"> <!-- انبوت -->
-            <button onclick="addTask()">اضافة</button> <!-- اضافة -->
-            <input type="text" id="searchInput" placeholder="🔍 ابحث..." style="width: 200px; margin-top: 10px;" onkeyup="filterTasks()"> <!-- بحث -->
-            <ul id="taskList"></ul> <!-- اللستة -->
-            <p style="font-size: 11px; color: gray; margin-top: 10px;">دبل كليك عشان تعدل المهمة</p> <!-- تلميح -->
-        </section>
-
-        <section class="todo-box"> <!-- مشروع 3 -->
-            <span class="project-tag">مشروع 3 - Live API</span> <!-- تاج -->
-            <h2>سعر الدولار لايف</h2> <!-- عنوان -->
-            <h3 id="dollarPrice">بيحمل...</h3> <!-- السعر -->
-            <button onclick="getDollarPrice()">حدث السعر</button> <!-- تحديث -->
-        </section>
-
-        <section id="contact" class="contact-box"> <!-- فورم التواصل -->
-            <span class="project-tag" style="background-color: #10b981;">تواصل</span> <!-- تاج -->
-            <h2>ابعتلي رسالة</h2> <!-- عنوان -->
-            <p style="color: gray; font-size: 14px;">الرسالة هتوصلي على ايميلي مباشرة</p> <!-- وصف -->
-            <input type="text" id="contactName" placeholder="اسمك"> <!-- اسمك -->
-            <input type="email" id="contactEmail" placeholder="ايميلك"> <!-- ايميلك -->
-            <textarea id="contactMessage" placeholder="اكتب رسالتك هنا..."></textarea> <!-- رسالتك -->
-            <button onclick="sendMessage()" style="width: 95%; background-color: #10b981;">ابعت الرسالة 🚀</button> <!-- زرار الارسال -->
-            <p id="contactStatus" style="font-size: 13px; margin-top: 10px;"></p> <!-- حالة الارسال -->
-        </section>
     </main>
 
-    <footer style="background-color: var(--card-color); padding: 20px; margin-top: 40px;"> <!-- فوتر -->
+    <footer style="background-color: var(--card-color); padding: 20px; margin-top: 40px; text-align:center;"> <!-- فوتر -->
         <p>مصنوع بـ ❤️ بواسطة عمر ناجح - 2026</p> <!-- فوتر -->
-        <p style="font-size: 12px; color: gray;">بتعلم كل يوم حاجة جديدة في الـ Visual Studio Code</p> <!-- جملة -->
     </footer>
 
     <script> // البرمجة كلها
@@ -317,42 +338,144 @@
                 setTimeout(typeWriter, 100); // استنى شوية
             }
         }
-        function animateNumber(id, target) { // فانكشن تحريك الارقام
-            let current = 0; // ابدأ من صفر
+        function animateNumber(id, target) { // تحريك ارقام
+            let current = 0; // صفر
             let step = target / 50; // خطوة
             let element = document.getElementById(id); // هات العنصر
             let timer = setInterval(() => { // كرر
                 current += step; // زود
-                if (current >= target) { // لو وصل
-                    current = target; // ثبته
-                    clearInterval(timer); // وقف
-                }
+                if (current >= target) { current = target; clearInterval(timer); } // لو وصل وقف
                 element.innerHTML = Math.floor(current); // اعرض
             }, 30); // كل 30 ملي
         }
+
+        // متغيرات الصيدلية الجديدة - جديدة كلها
+        let invoices = JSON.parse(localStorage.getItem("pharmaInvoices") || "[]"); // هات الفواتير من التخزين - JSON.parse = حول النص لكائن
+        let shiftActive = localStorage.getItem("shiftActive") == "true"; // هل الشيفت شغال - جديد
+        let shiftStart = localStorage.getItem("shiftStart") || null; // بداية الشيفت - جديد
+
+        function filterShortcuts() { // فلتر اختصارات - جديد
+            let filter = document.getElementById("shortcutSearch").value.toLowerCase(); // كلام البحث
+            let items = document.querySelectorAll(".shortcut-item"); // هات كل الاختصارات - querySelectorAll = هات الكل
+            items.forEach(item => { // لف على كل واحد - forEach = لكل واحد
+                let text = item.innerText.toLowerCase(); // نص الاختصار
+                if (text.includes(filter)) { item.style.display = "flex"; } else { item.style.display = "none"; } // اظهر او اخفي
+            });
+        }
+        function copyShortcut(el) { // نسخ اختصار - جديد
+            let key = el.querySelector(".shortcut-key").innerText; // هات الاختصار
+            navigator.clipboard.writeText(key); // انسخه - clipboard = الحافظة
+            document.getElementById("shortcutMsg").innerHTML = `✅ نسخت ${key} - جربه في الـ VS Code`; // رسالة
+            setTimeout(() => { document.getElementById("shortcutMsg").innerHTML = ""; }, 2000); // امسح الرسالة بعد ثانيتين
+        }
+
+        function addInvoice() { // اضافة فاتورة صيدلية - جديد كله
+            let type = document.getElementById("invoiceType").value; // نوع الفاتورة
+            let amount = Number(document.getElementById("invoiceAmount").value); // المبلغ
+            let note = document.getElementById("invoiceNote").value; // الملاحظة
+            if (amount == 0 || amount == "") { alert("اكتب المبلغ الاول!"); return; } // لو فاضي
+
+            let invoice = { // كائن الفاتورة - جديد
+                id: Date.now(), // اي دي بالتاريخ - Date.now = الوقت الحالي
+                type: type, // نوع
+                amount: amount, // مبلغ
+                note: note || "بدون ملاحظة", // ملاحظة
+                time: new Date().toLocaleTimeString('ar-EG'), // وقت الفاتورة - toLocaleTimeString = وقت محلي
+                shift: shiftActive ? "شيفت حالي" : "بدون شيفت" // تبع انهي شيفت
+            };
+
+            invoices.push(invoice); // ضيفها في المصفوفة - push = ضيف في الاخر
+            localStorage.setItem("pharmaInvoices", JSON.stringify(invoices)); // خزنها - stringify = حولها لنص
+            document.getElementById("invoiceAmount").value = ""; // فضي المبلغ
+            document.getElementById("invoiceNote").value = ""; // فضي الملاحظة
+            renderInvoices(); // اعرض الفواتير
+        }
+
+        function renderInvoices() { // عرض الفواتير - جديد
+            let list = document.getElementById("invoiceList"); // هات اللستة
+            list.innerHTML = ""; // فضيها
+            let totalSales = 0; // اجمالي مبيعات
+            let totalExpenses = 0; // اجمالي مصاريف
+
+            invoices.slice().reverse().forEach(inv => { // اعرض من الجديد للقديم - reverse = اقلب
+                let li = document.createElement("li"); // li جديدة
+                let color = inv.type == "sale" ? "var(--green)" : "var(--red)"; // لون حسب النوع
+                let sign = inv.type == "sale" ? "+" : "-"; // علامة
+                li.innerHTML = `<div><b style="color:${color}">${sign}${inv.amount} جنيه</b> - ${inv.note} <br><small style="color:gray;">${inv.time} | ${inv.shift}</small></div> <button onclick="deleteInvoice(${inv.id})" style="background:red; padding:3px 8px; font-size:12px;">X</button>`; // محتوى
+                list.appendChild(li); // ضيفها
+
+                if (inv.type == "sale") { totalSales += inv.amount; } else { totalExpenses += inv.amount; } // اجمع
+            });
+
+            document.getElementById("totalSales").innerHTML = totalSales; // اعرض اجمالي مبيعات
+            document.getElementById("totalExpenses").innerHTML = totalExpenses; // اعرض مصاريف
+            document.getElementById("netProfit").innerHTML = totalSales - totalExpenses; // صافي ربح = مبيعات - مصاريف
+            document.getElementById("invoiceCount").innerHTML = invoices.length; // عدد الفواتير
+        }
+
+        function deleteInvoice(id) { // مسح فاتورة - جديد
+            invoices = invoices.filter(inv => inv.id != id); // شيل اللي اي ديه بيساوي الاي دي - filter = فلتر
+            localStorage.setItem("pharmaInvoices", JSON.stringify(invoices)); // خزن تاني
+            renderInvoices(); // اعرض تاني
+        }
+
+        function toggleShift() { // تشغيل/ايقاف شيفت - جديد
+            let btn = document.getElementById("shiftBtn"); // زرار
+            let status = document.getElementById("shiftStatus"); // حالة
+            if (!shiftActive) { // لو مش شغال
+                shiftActive = true; // شغله
+                shiftStart = new Date().toLocaleString('ar-EG'); // سجل وقت البداية
+                localStorage.setItem("shiftActive", "true"); // خزن حالة
+                localStorage.setItem("shiftStart", shiftStart); // خزن وقت
+                btn.innerHTML = "انهاء الشيفت"; // غير كلام الزرار
+                btn.style.backgroundColor = "var(--red)"; // احمر
+                status.innerHTML = `✅ شيفت شغال من ${shiftStart}`; // اعرض حالة
+            } else { // لو شغال وعايز تقفله
+                if (confirm("عايز تقفل الشيفت؟ هيعمل تقرير بالارباح")) { // اسأل - confirm = رسالة تأكيد
+                    let end = new Date().toLocaleString('ar-EG'); // وقت النهاية
+                    alert(`تقرير الشيفت:\nبدأ: ${shiftStart}\nانتهى: ${end}\nالمبيعات: ${document.getElementById("totalSales").innerText}\nالربح: ${document.getElementById("netProfit").innerText}`); // تقرير
+                    shiftActive = false; // اقفله
+                    localStorage.setItem("shiftActive", "false"); // خزن
+                    btn.innerHTML = "ابدأ شيفت جديد"; // رجع الكلام
+                    btn.style.backgroundColor = "#f59e0b"; // برتقالي
+                    status.innerHTML = "مفيش شيفت شغال"; // حالة
+                }
+            }
+        }
+
+        function clearDay() { // تصفير اليوم - جديد
+            if (confirm("متأكد عايز تمسح كل فواتير النهارده؟")) { // تأكيد
+                invoices = []; // فضي المصفوفة
+                localStorage.removeItem("pharmaInvoices"); // امسح من التخزين - removeItem = امسح
+                renderInvoices(); // اعرض
+            }
+        }
+
         window.onload = function() { // اول ما تفتح
-            setTimeout(() => { // استنى ثانية
+            setTimeout(() => { // استنى
                 document.getElementById("loader").style.display = "none"; // اخفي اللودينج
-                typeWriter(); // ابدأ الكتابة
-                animateNumber("visitCount", 124); // عد لحد 124
-                animateNumber("projectCount", 3); // عد لحد 3
-                animateNumber("codeHours", 84); // عد لحد 84
+                typeWriter(); // كتابة
+                animateNumber("visitCount", 124); // ارقام
+                animateNumber("projectCount", 4); // بقوا 4 مشاريع
+                animateNumber("codeHours", 120); // ساعات
             }, 800); // 800 ملي
-            let savedTasks = localStorage.getItem("myTasks"); // هات المهام
+            let savedTasks = localStorage.getItem("myTasks"); // هات مهام
             if (savedTasks) { document.getElementById("taskList").innerHTML = savedTasks; addDeleteEvents(); }
             if (localStorage.getItem("darkMode") == "yes") { document.body.classList.add("dark"); }
-            updateCounter(); // عداد
-            getDollarPrice(); // دولار
-            let visits = localStorage.getItem("visits"); // هات الزيارات
-            if (!visits) { visits = 0; } // لو اول مرة صفر
-            visits = Number(visits) + 1; // زود واحد
-            localStorage.setItem("visits", visits); // خزنه
+            updateCounter(); // عداد مهام
+
+            renderInvoices(); // اعرض فواتير الصيدلية - جديد
+            if (shiftActive) { // لو كان في شيفت شغال قبل كده
+                document.getElementById("shiftBtn").innerHTML = "انهاء الشيفت"; // غير الزرار
+                document.getElementById("shiftBtn").style.backgroundColor = "var(--red)"; // احمر
+                document.getElementById("shiftStatus").innerHTML = `✅ شيفت شغال من ${shiftStart}`; // حالة
+            }
         }
         function calculate(op) { // آلة حاسبة
             let n1 = Number(document.getElementById("num1").value); // رقم 1
             let n2 = Number(document.getElementById("num2").value); // رقم 2
-            let finalResult = 0; // النتيجة
-            if (op == '+') { finalResult = n1 + n2; } else if (op == '-') { finalResult = n1 - n2; } else if (op == '*') { finalResult = n1 * n2; } else if (op == '/') { if (n2 == 0) { alert("مينفعش تقسم على صفر ياعم!"); return; } finalResult = n1 / n2; }
+            let finalResult = 0; // نتيجة
+            if (op == '+') { finalResult = n1 + n2; } else if (op == '-') { finalResult = n1 - n2; } else if (op == '*') { finalResult = n1 * n2; } else if (op == '/') { if (n2 == 0) { alert("مينفعش تقسم على صفر!"); return; } finalResult = n1 / n2; }
             document.getElementById("result").innerHTML = "النتيجة: " + finalResult; // اعرض
         }
         function addTask() { // اضافة مهمة
@@ -381,45 +504,18 @@
             let texts = document.querySelectorAll(".task-text"); // نصوص
             texts.forEach(t => { t.ondblclick = function() { editTask(this); } });
         }
-        async function getDollarPrice() { // دولار API
-            document.getElementById("dollarPrice").innerHTML = "بيحمل..."; // بيحمل
-            try { // حاول
-                let response = await fetch("https://api.exchangerate-api.com/v4/latest/USD"); // هات
-                let data = await response.json(); // حول
-                let egpPrice = data.rates.EGP; // جنيه
-                document.getElementById("dollarPrice").innerHTML = "1 دولار = " + egpPrice + " جنيه"; // اعرض
-            } catch (error) { document.getElementById("dollarPrice").innerHTML = "النت فاصل، جرب تاني"; }
-        }
         function toggleDark() { // دارك مود
             document.body.classList.toggle("dark"); // شيل وحط
             if (document.body.classList.contains("dark")) { localStorage.setItem("darkMode", "yes"); } else { localStorage.setItem("darkMode", "no"); }
         }
-        function updateCounter() { // عداد
+        function updateCounter() { // عداد مهام
             let count = document.getElementById("taskList").children.length; // عد
-            document.getElementById("taskCounter").innerHTML = `عندك ${count} مهام`; // اعرض
+            let el = document.getElementById("taskCounter"); // هات العداد
+            if (el) { el.innerHTML = `عندك ${count} مهام`; } // اعرض لو موجود
         }
         function editTask(span) { // تعديل
             let newText = prompt("عدل المهمة:", span.innerText); // اسأل
             if (newText && newText!= "") { span.innerText = newText; saveTasks(); }
-        }
-        function filterTasks() { // فلتر
-            let filter = document.getElementById("searchInput").value.toLowerCase(); // كلام البحث
-            let tasks = document.getElementById("taskList").getElementsByTagName("li"); // مهام
-            for (let i = 0; i < tasks.length; i++) { // لف
-                let txt = tasks[i].innerText.toLowerCase(); // نص
-                if (txt.includes(filter)) { tasks[i].style.display = ""; } else { tasks[i].style.display = "none"; }
-            }
-        }
-        function sendMessage() { // ارسال الرسالة
-            let name = document.getElementById("contactName").value; // اسم
-            let email = document.getElementById("contactEmail").value; // ايميل
-            let msg = document.getElementById("contactMessage").value; // رسالة
-            let status = document.getElementById("contactStatus"); // حالة
-            if (name == "" || email == "" || msg == "") { status.innerHTML = "❌ املى كل الخانات الاول"; status.style.color = "red"; return; }
-            status.innerHTML = "⏳ بيبعت..."; status.style.color = "gray";
-            fetch(`https://formsubmit.co/ajax/${email}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, message: msg, _subject: `رسالة جديدة من ${name} من موقعك!` }) })
-      .then(response => response.json()).then(data => { status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; status.style.color = "green"; document.getElementById("contactName").value = ""; document.getElementById("contactEmail").value = ""; document.getElementById("contactMessage").value = ""; })
-      .catch(error => { status.innerHTML = "❌ حصل مشكلة، جرب تاني"; status.style.color = "red"; });
         }
     </script>
 </body>
