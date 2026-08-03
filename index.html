@@ -25,6 +25,19 @@
             margin: 0; /* شيل المسافة */
             padding: 0; /* شيل المسافة */
         }
+        /* لودينج جديد - كله جديد */
+        #loader { /* شاشة التحميل */
+            position: fixed; /* ثابتة فوق كل حاجة */
+            top: 0; left: 0; /* من فوق خالص */
+            width: 100%; height: 100%; /* مالية الشاشة */
+            background-color: var(--bg-color); /* لون الخلفية */
+            display: flex; /* في النص */
+            justify-content: center; /* في النص افقي */
+            align-items: center; /* في النص عمودي */
+            z-index: 9999; /* فوق كل حاجة */
+            font-size: 24px; /* كبير */
+            font-weight: bold; /* تخين */
+        }
         header { /* راس الصفحة Hero */
             background: linear-gradient(135deg, var(--main-color), #7c3aed); /* تدرج */
             color: white; /* ابيض */
@@ -37,15 +50,30 @@
             width: 150px; /* حجم */
             height: 150px; /* حجم */
             object-fit: cover; /* متتعوجش */
+            animation: float 3s ease-in-out infinite; /* بتطلع وتنزل - جديد */
         }
-      .cards { /* كروت المهارات */
+        @keyframes float { /* انيميشن الطلوع والنزول - جديد */
+            0% { transform: translateY(0px); } /* عادي */
+            50% { transform: translateY(-10px); } /* فوق */
+            100% { transform: translateY(0px); } /* عادي تاني */
+        }
+       .typing { /* الكتابة اللي بتتكتب لوحدها - جديد */
+            border-right: 3px solid white; /* مؤشر كتابة */
+            animation: blink 0.7s infinite; /* بيطفي وينور */
+        }
+        @keyframes blink { /* انيميشن المؤشر - جديد */
+            0% { border-color: transparent; } /* شفاف */
+            50% { border-color: white; } /* ابيض */
+            100% { border-color: transparent; } /* شفاف */
+        }
+     .cards { /* كروت المهارات */
             display: flex; /* رص جنب بعض */
             justify-content: center; /* في النص */
             gap: 15px; /* مسافة */
             margin-top: 20px; /* مسافة */
             flex-wrap: wrap; /* انزل تحت */
         }
-      .card { /* الكارت الواحد */
+     .card { /* الكارت الواحد */
             background-color: var(--card-color); /* متغير */
             padding: 20px; /* مسافة */
             border-radius: 15px; /* حواف */
@@ -54,7 +82,7 @@
             cursor: pointer; /* ايد */
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* ظل */
         }
-      .card:hover { /* لما تحط الماوس */
+     .card:hover { /* لما تحط الماوس */
             transform: translateY(-10px) scale(1.05); /* يطلع ويكبر */
             background-color: var(--main-color); /* ازرق */
             color: white; /* ابيض */
@@ -76,8 +104,17 @@
         }
         section { /* كل سكشن */
             margin: 40px 0; /* مسافة */
+            opacity: 0; /* مخفي في الاول - جديد */
+            transform: translateY(20px); /* نازل لتحت - جديد */
+            animation: fadeUp 0.8s forwards; /* انيميشن يطلع - جديد */
         }
-      .calculator,.todo-box,.contact-box { /* بوكسات المشاريع والتواصل - زودنا contact-box */
+        section:nth-child(1) { animation-delay: 0.2s; } /* اول سكشن يظهر بسرعة - جديد */
+        section:nth-child(2) { animation-delay: 0.4s; } /* تاني سكشن بعديه - جديد */
+        section:nth-child(3) { animation-delay: 0.6s; } /* وهكذا - جديد */
+        @keyframes fadeUp { /* انيميشن الظهور - جديد */
+            to { opacity: 1; transform: translateY(0); } /* يظهر ويطلع */
+        }
+     .calculator,.todo-box,.contact-box { /* بوكسات المشاريع */
             background-color: var(--card-color); /* متغير */
             padding: 25px; /* مسافة */
             border-radius: 20px; /* حواف */
@@ -86,70 +123,39 @@
             max-width: 90%; /* موبايل */
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ظل */
         }
-        input, textarea { /* الانبوت والتيكست اريا - جديد */
+        input, textarea { /* الانبوت */
             padding: 12px; /* حجم */
             margin: 8px 0; /* مسافة */
             border-radius: 10px; /* حواف */
             border: 1px solid #ddd; /* برواز */
-            width: 90%; /* عرض كبير - جديد */
+            width: 90%; /* عرض كبير */
             background-color: var(--bg-color); /* خلفية */
             color: var(--text-color); /* كلام */
             font-family: Arial; /* خط */
         }
-        textarea { /* التيكست اريا بس */
-            height: 80px; /* طول */
-            resize: none; /* متتشدش */
-        }
-      .op-btn { /* زراير العمليات */
-            width: 65px; /* عرض */
-            background-color: #222; /* غامق */
-        }
-      .todo-box ul { /* لستة المهام */
-            list-style: none; /* شيل النقط */
-            padding: 0; /* شيل المسافة */
-        }
-      .todo-box li { /* المهمة الواحدة */
-            background-color: var(--bg-color); /* خلفية */
-            padding: 12px; /* مسافة */
-            margin: 8px 0; /* مسافة */
-            border-radius: 10px; /* حواف */
-            display: flex; /* رص */
-            justify-content: space-between; /* يمين وشمال */
-            align-items: center; /* في النص */
-        }
-      .task-text { /* نص المهمة */
-            cursor: pointer; /* ايد */
-            flex: 1; /* مساحة */
-            text-align: right; /* يمين */
-            word-break: break-word; /* متطلعش برة */
-        }
-      .project-tag { /* تاج مشروعي */
-            background-color: var(--main-color); /* ازرق */
-            color: white; /* ابيض */
-            padding: 5px 10px; /* حجم */
-            border-radius: 20px; /* مدور */
-            font-size: 12px; /* صغير */
-            display: inline-block; /* جنب بعض */
-            margin-bottom: 10px; /* مسافة */
-        }
-        @media (max-width: 600px) { /* موبايل */
-          .cards { flex-direction: column; align-items: center; }
-          .card { width: 80%; }
-        }
+        textarea { height: 80px; resize: none; }
+     .op-btn { width: 65px; background-color: #222; }
+     .todo-box ul { list-style: none; padding: 0; }
+     .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+     .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
+     .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+        @media (max-width: 600px) {.cards { flex-direction: column; align-items: center; }.card { width: 80%; } }
     </style>
 </head>
 <body> <!-- اللي بيظهر للناس -->
+    <div id="loader">⏳ بيحمل يا عمر...</div> <!-- شاشة تحميل - جديد -->
+
     <header> <!-- Hero Section -->
         <button onclick="toggleDark()" style="position: absolute; top: 15px; left: 15px; background-color: rgba(255,255,255,0.2);">🌙</button> <!-- دارك مود -->
         <img src="https://via.placeholder.com/200" alt="دي صورتي"> <!-- صورتي -->
-        <h1 id="title">عمر ناجح</h1> <!-- اسمي -->
+        <h1 id="title"><span id="typingText"></span><span class="typing"></span></h1> <!-- مكان الكتابة المتحركة - جديد -->
         <p>Front-End Developer | بتعلم وبعمل مواقع</p> <!-- وظيفة -->
         <p style="margin-top: 15px;"> <!-- لينكات -->
             <a href="https://github.com" style="color: white; margin: 0 10px; text-decoration: none;">GitHub</a> |
             <a href="https://google.com" style="color: white; margin: 0 10px; text-decoration: none;">LinkedIn</a>
         </p>
         <br>
-        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">تواصل معايا</button> <!-- زرار بينزل للفورم - جديد -->
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">تواصل معايا</button> <!-- زرار بينزل للفورم -->
     </header>
 
     <main> <!-- جسم الموقع -->
@@ -199,15 +205,15 @@
             <button onclick="getDollarPrice()">حدث السعر</button> <!-- تحديث -->
         </section>
 
-        <section id="contact" class="contact-box"> <!-- فورم التواصل الجديد كله - جديد -->
+        <section id="contact" class="contact-box"> <!-- فورم التواصل -->
             <span class="project-tag" style="background-color: #10b981;">جديد - شغال بجد</span> <!-- تاج جديد -->
             <h2>ابعتلي رسالة</h2> <!-- عنوان -->
             <p style="color: gray; font-size: 14px;">الرسالة هتوصلي على ايميلي مباشرة</p> <!-- وصف -->
-            <input type="text" id="contactName" placeholder="اسمك"> <!-- اسمك - جديد -->
-            <input type="email" id="contactEmail" placeholder="ايميلك"> <!-- ايميلك - جديد -->
-            <textarea id="contactMessage" placeholder="اكتب رسالتك هنا..."></textarea> <!-- رسالتك - جديد -->
-            <button onclick="sendMessage()" style="width: 95%; background-color: #10b981;">ابعت الرسالة 🚀</button> <!-- زرار الارسال - جديد -->
-            <p id="contactStatus" style="font-size: 13px; margin-top: 10px;"></p> <!-- حالة الارسال - جديد -->
+            <input type="text" id="contactName" placeholder="اسمك"> <!-- اسمك -->
+            <input type="email" id="contactEmail" placeholder="ايميلك"> <!-- ايميلك -->
+            <textarea id="contactMessage" placeholder="اكتب رسالتك هنا..."></textarea> <!-- رسالتك -->
+            <button onclick="sendMessage()" style="width: 95%; background-color: #10b981;">ابعت الرسالة 🚀</button> <!-- زرار الارسال -->
+            <p id="contactStatus" style="font-size: 13px; margin-top: 10px;"></p> <!-- حالة الارسال -->
         </section>
     </main>
 
@@ -217,8 +223,29 @@
     </footer>
 
     <script> // البرمجة كلها
-        function sayHello() { // فانكشن قديمة لسة شغالة
-            document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); // انزل للفورم - scrollIntoView = انزل للعنصر - smooth = بسلاسة
+        // كود الكتابة المتحركة الجديد - كله جديد
+        let textToType = "انا اسمي عمر ناجح"; // النص اللي هيتكتب
+        let i = 0; // عداد
+        function typeWriter() { // فانكشن الكتابة
+            if (i < textToType.length) { // لو لسة في حروف
+                document.getElementById("typingText").innerHTML += textToType.charAt(i); // زود حرف - charAt = هات الحرف رقم i
+                i++; // زود العداد
+                setTimeout(typeWriter, 100); // استنى 100 ملي ثانية واكتب الحرف اللي بعده - setTimeout = استنى شوية
+            }
+        }
+
+        window.onload = function() { // اول ما تفتح
+            // شيل اللودينج بعد ثانية - جديد
+            setTimeout(() => { // استنى ثانية
+                document.getElementById("loader").style.display = "none"; // اخفي اللودينج - display none = اخفي
+                typeWriter(); // ابدأ الكتابة المتحركة
+            }, 800); // 800 ملي ثانية = 0.8 ثانية
+
+            let savedTasks = localStorage.getItem("myTasks"); // هات المهام
+            if (savedTasks) { document.getElementById("taskList").innerHTML = savedTasks; addDeleteEvents(); }
+            if (localStorage.getItem("darkMode") == "yes") { document.body.classList.add("dark"); }
+            updateCounter(); // عداد
+            getDollarPrice(); // دولار
         }
         function calculate(op) { // آلة حاسبة
             let n1 = Number(document.getElementById("num1").value); // رقم 1
@@ -226,13 +253,6 @@
             let finalResult = 0; // النتيجة
             if (op == '+') { finalResult = n1 + n2; } else if (op == '-') { finalResult = n1 - n2; } else if (op == '*') { finalResult = n1 * n2; } else if (op == '/') { if (n2 == 0) { alert("مينفعش تقسم على صفر ياعم!"); return; } finalResult = n1 / n2; }
             document.getElementById("result").innerHTML = "النتيجة: " + finalResult; // اعرض
-        }
-        window.onload = function() { // اول ما تفتح
-            let savedTasks = localStorage.getItem("myTasks"); // هات المهام
-            if (savedTasks) { document.getElementById("taskList").innerHTML = savedTasks; addDeleteEvents(); }
-            if (localStorage.getItem("darkMode") == "yes") { document.body.classList.add("dark"); }
-            updateCounter(); // عداد
-            getDollarPrice(); // دولار
         }
         function addTask() { // اضافة مهمة
             let input = document.getElementById("taskInput"); // انبوت
@@ -289,39 +309,16 @@
                 if (txt.includes(filter)) { tasks[i].style.display = ""; } else { tasks[i].style.display = "none"; }
             }
         }
-        function sendMessage() { // فانكشن ارسال الرسالة الجديدة - جديدة كلها
-            let name = document.getElementById("contactName").value; // هات الاسم - جديد
-            let email = document.getElementById("contactEmail").value; // هات الايميل - جديد
-            let msg = document.getElementById("contactMessage").value; // هات الرسالة - جديد
-            let status = document.getElementById("contactStatus"); // مكان حالة الارسال - جديد
-
-            if (name == "" || email == "" || msg == "") { // لو اي حاجة فاضية
-                status.innerHTML = "❌ املى كل الخانات الاول"; // قول املى الخانات
-                status.style.color = "red"; // لون احمر
-                return; // وقف
-            }
-
-            status.innerHTML = "⏳ بيبعت..."; // قول بيبعت
-            status.style.color = "gray"; // رمادي
-
-            // ده هيبعت الايميل بجد عن طريق موقع formsubmit - ببلاش ومن غير باك اند
-            fetch(`https://formsubmit.co/ajax/${email}`, { // ابعت لايميله هو - هيوصله - fetch تاني بس المرة دي بنبعت مش بنستقبل
-                method: "POST", // نوع الطلب - POST يعني ببعت بيانات
-                headers: { 'Content-Type': 'application/json' }, // نوع البيانات
-                body: JSON.stringify({ name: name, message: msg, _subject: `رسالة جديدة من ${name} من موقعك!` }) // البيانات اللي هتتبعت - stringify = حولها لنص
-            })
-           .then(response => response.json()) // حول الرد لـ JSON
-           .then(data => { // لو نجح
-                status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; // قول اتبعتت
-                status.style.color = "green"; // اخضر
-                document.getElementById("contactName").value = ""; // فضي الاسم
-                document.getElementById("contactEmail").value = ""; // فضي الايميل
-                document.getElementById("contactMessage").value = ""; // فضي الرسالة
-            })
-           .catch(error => { // لو فشل
-                status.innerHTML = "❌ حصل مشكلة، جرب تاني"; // قول حصل مشكلة
-                status.style.color = "red"; // احمر
-            });
+        function sendMessage() { // ارسال الرسالة
+            let name = document.getElementById("contactName").value; // اسم
+            let email = document.getElementById("contactEmail").value; // ايميل
+            let msg = document.getElementById("contactMessage").value; // رسالة
+            let status = document.getElementById("contactStatus"); // حالة
+            if (name == "" || email == "" || msg == "") { status.innerHTML = "❌ املى كل الخانات الاول"; status.style.color = "red"; return; }
+            status.innerHTML = "⏳ بيبعت..."; status.style.color = "gray";
+            fetch(`https://formsubmit.co/ajax/${email}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, message: msg, _subject: `رسالة جديدة من ${name} من موقعك!` }) })
+          .then(response => response.json()).then(data => { status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; status.style.color = "green"; document.getElementById("contactName").value = ""; document.getElementById("contactEmail").value = ""; document.getElementById("contactMessage").value = ""; })
+          .catch(error => { status.innerHTML = "❌ حصل مشكلة، جرب تاني"; status.style.color = "red"; });
         }
     </script>
 </body>
