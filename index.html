@@ -25,7 +25,6 @@
             margin: 0; /* شيل المسافة */
             padding: 0; /* شيل المسافة */
         }
-        /* لودينج جديد - كله جديد */
         #loader { /* شاشة التحميل */
             position: fixed; /* ثابتة فوق كل حاجة */
             top: 0; left: 0; /* من فوق خالص */
@@ -57,7 +56,7 @@
             50% { transform: translateY(-10px); } /* فوق */
             100% { transform: translateY(0px); } /* عادي تاني */
         }
-       .typing { /* الكتابة اللي بتتكتب لوحدها - جديد */
+      .typing { /* الكتابة اللي بتتكتب لوحدها - جديد */
             border-right: 3px solid white; /* مؤشر كتابة */
             animation: blink 0.7s infinite; /* بيطفي وينور */
         }
@@ -66,14 +65,14 @@
             50% { border-color: white; } /* ابيض */
             100% { border-color: transparent; } /* شفاف */
         }
-     .cards { /* كروت المهارات */
+    .cards { /* كروت المهارات */
             display: flex; /* رص جنب بعض */
             justify-content: center; /* في النص */
             gap: 15px; /* مسافة */
             margin-top: 20px; /* مسافة */
             flex-wrap: wrap; /* انزل تحت */
         }
-     .card { /* الكارت الواحد */
+    .card { /* الكارت الواحد */
             background-color: var(--card-color); /* متغير */
             padding: 20px; /* مسافة */
             border-radius: 15px; /* حواف */
@@ -82,7 +81,7 @@
             cursor: pointer; /* ايد */
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* ظل */
         }
-     .card:hover { /* لما تحط الماوس */
+    .card:hover { /* لما تحط الماوس */
             transform: translateY(-10px) scale(1.05); /* يطلع ويكبر */
             background-color: var(--main-color); /* ازرق */
             color: white; /* ابيض */
@@ -114,7 +113,7 @@
         @keyframes fadeUp { /* انيميشن الظهور - جديد */
             to { opacity: 1; transform: translateY(0); } /* يظهر ويطلع */
         }
-     .calculator,.todo-box,.contact-box { /* بوكسات المشاريع */
+    .calculator,.todo-box,.contact-box { /* بوكسات المشاريع */
             background-color: var(--card-color); /* متغير */
             padding: 25px; /* مسافة */
             border-radius: 20px; /* حواف */
@@ -134,11 +133,11 @@
             font-family: Arial; /* خط */
         }
         textarea { height: 80px; resize: none; }
-     .op-btn { width: 65px; background-color: #222; }
-     .todo-box ul { list-style: none; padding: 0; }
-     .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-     .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
-     .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+    .op-btn { width: 65px; background-color: #222; }
+    .todo-box ul { list-style: none; padding: 0; }
+    .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
+    .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
         @media (max-width: 600px) {.cards { flex-direction: column; align-items: center; }.card { width: 80%; } }
     </style>
 </head>
@@ -317,8 +316,8 @@
             if (name == "" || email == "" || msg == "") { status.innerHTML = "❌ املى كل الخانات الاول"; status.style.color = "red"; return; }
             status.innerHTML = "⏳ بيبعت..."; status.style.color = "gray";
             fetch(`https://formsubmit.co/ajax/${email}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, message: msg, _subject: `رسالة جديدة من ${name} من موقعك!` }) })
-          .then(response => response.json()).then(data => { status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; status.style.color = "green"; document.getElementById("contactName").value = ""; document.getElementById("contactEmail").value = ""; document.getElementById("contactMessage").value = ""; })
-          .catch(error => { status.innerHTML = "❌ حصل مشكلة، جرب تاني"; status.style.color = "red"; });
+         .then(response => response.json()).then(data => { status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; status.style.color = "green"; document.getElementById("contactName").value = ""; document.getElementById("contactEmail").value = ""; document.getElementById("contactMessage").value = ""; })
+         .catch(error => { status.innerHTML = "❌ حصل مشكلة، جرب تاني"; status.style.color = "red"; });
         }
     </script>
 </body>
