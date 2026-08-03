@@ -1,60 +1,328 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- بتقول للمتصفح ده موقع مش لعبة -->
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عمر ناجح - مطور مواقع</title>
-    <style>
-        :root { --bg-color: #f5f7fb; --card-color: white; --text-color: #111; --main-color: #0066ff; }
-        body.dark { --bg-color: #0f1115; --card-color: #1a1d25; --text-color: #e8e8e8; --main-color: #3b82f6; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Segoe UI', sans-serif; text-align: center; transition: 0.3s; margin: 0; padding: 0; }
-        header { background: linear-gradient(135deg, var(--main-color), #7c3aed); color: white; padding: 60px 20px; border-radius: 0 0 30px 30px; }
-        header img { border-radius: 50%; border: 4px solid white; width: 150px; height: 150px; object-fit: cover; }
-       .cards { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-       .card { background-color: var(--card-color); padding: 20px; border-radius: 15px; width: 120px; transition: 0.3s; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-       .card:hover { transform: translateY(-10px) scale(1.05); background-color: var(--main-color); color: white; }
-        button { background-color: var(--main-color); color: white; padding: 12px 25px; border: none; border-radius: 25px; margin-top: 10px; transition: 0.3s; cursor: pointer; font-weight: bold; }
-        button:hover { transform: scale(1.05); }
-        section { margin: 40px 0; }
-       .calculator,.todo-box,.contact-box { background-color: var(--card-color); padding: 25px; border-radius: 20px; margin: 20px auto; width: 380px; max-width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        input, textarea { padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #ddd; width: 90%; background-color: var(--bg-color); color: var(--text-color); }
-        textarea { height: 80px; resize: none; }
-       .op-btn { width: 65px; background-color: #222; }
-       .todo-box ul { list-style: none; padding: 0; }
-       .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-       .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
-       .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
-        @media (max-width: 600px) {.cards { flex-direction: column; align-items: center; }.card { width: 80%; } }
+<head> <!-- معلومات سرية للمتصفح -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- سحر الموبايل -->
+    <title>عمر ناجح - مطور مواقع</title> <!-- عنوان التاب -->
+    <style> /* مكان الألوان والشكل كله */
+        :root { /* متغيرات الألوان */
+            --bg-color: #f5f7fb; /* خلفية فاتحة */
+            --card-color: white; /* كروت بيضا */
+            --text-color: #111; /* كلام اسود */
+            --main-color: #0066ff; /* ازرق */
+        }
+        body.dark { /* دارك مود */
+            --bg-color: #0f1115; /* سودا */
+            --card-color: #1a1d25; /* غامقة */
+            --text-color: #e8e8e8; /* ابيض */
+            --main-color: #3b82f6; /* ازرق فاتح */
+        }
+        body { /* جسم الصفحة */
+            background-color: var(--bg-color); /* متغير */
+            color: var(--text-color); /* متغير */
+            font-family: 'Segoe UI', Tahoma, sans-serif; /* خط شيك */
+            text-align: center; /* في النص */
+            transition: 0.3s; /* ناعم */
+            margin: 0; /* شيل المسافة */
+            padding: 0; /* شيل المسافة */
+        }
+        header { /* راس الصفحة Hero */
+            background: linear-gradient(135deg, var(--main-color), #7c3aed); /* تدرج */
+            color: white; /* ابيض */
+            padding: 60px 20px; /* مسافة كبيرة */
+            border-radius: 0 0 30px 30px; /* حواف من تحت */
+        }
+        header img { /* صورتي */
+            border-radius: 50%; /* مدورة */
+            border: 4px solid white; /* برواز ابيض */
+            width: 150px; /* حجم */
+            height: 150px; /* حجم */
+            object-fit: cover; /* متتعوجش */
+        }
+      .cards { /* كروت المهارات */
+            display: flex; /* رص جنب بعض */
+            justify-content: center; /* في النص */
+            gap: 15px; /* مسافة */
+            margin-top: 20px; /* مسافة */
+            flex-wrap: wrap; /* انزل تحت */
+        }
+      .card { /* الكارت الواحد */
+            background-color: var(--card-color); /* متغير */
+            padding: 20px; /* مسافة */
+            border-radius: 15px; /* حواف */
+            width: 120px; /* عرض */
+            transition: 0.3s; /* ناعم */
+            cursor: pointer; /* ايد */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* ظل */
+        }
+      .card:hover { /* لما تحط الماوس */
+            transform: translateY(-10px) scale(1.05); /* يطلع ويكبر */
+            background-color: var(--main-color); /* ازرق */
+            color: white; /* ابيض */
+        }
+        button { /* كل الزراير */
+            background-color: var(--main-color); /* ازرق */
+            color: white; /* ابيض */
+            padding: 12px 25px; /* حجم */
+            border: none; /* شيل البرواز */
+            border-radius: 25px; /* مدور */
+            margin-top: 10px; /* مسافة */
+            transition: 0.3s; /* ناعم */
+            cursor: pointer; /* ايد */
+            font-weight: bold; /* تخين */
+        }
+        button:hover { /* لما تحط الماوس */
+            transform: scale(1.05); /* يكبر */
+            box-shadow: 0 5px 15px rgba(0,102,255,0.4); /* ظل ازرق */
+        }
+        section { /* كل سكشن */
+            margin: 40px 0; /* مسافة */
+        }
+      .calculator,.todo-box,.contact-box { /* بوكسات المشاريع والتواصل - زودنا contact-box */
+            background-color: var(--card-color); /* متغير */
+            padding: 25px; /* مسافة */
+            border-radius: 20px; /* حواف */
+            margin: 20px auto; /* في النص */
+            width: 380px; /* عرض */
+            max-width: 90%; /* موبايل */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ظل */
+        }
+        input, textarea { /* الانبوت والتيكست اريا - جديد */
+            padding: 12px; /* حجم */
+            margin: 8px 0; /* مسافة */
+            border-radius: 10px; /* حواف */
+            border: 1px solid #ddd; /* برواز */
+            width: 90%; /* عرض كبير - جديد */
+            background-color: var(--bg-color); /* خلفية */
+            color: var(--text-color); /* كلام */
+            font-family: Arial; /* خط */
+        }
+        textarea { /* التيكست اريا بس */
+            height: 80px; /* طول */
+            resize: none; /* متتشدش */
+        }
+      .op-btn { /* زراير العمليات */
+            width: 65px; /* عرض */
+            background-color: #222; /* غامق */
+        }
+      .todo-box ul { /* لستة المهام */
+            list-style: none; /* شيل النقط */
+            padding: 0; /* شيل المسافة */
+        }
+      .todo-box li { /* المهمة الواحدة */
+            background-color: var(--bg-color); /* خلفية */
+            padding: 12px; /* مسافة */
+            margin: 8px 0; /* مسافة */
+            border-radius: 10px; /* حواف */
+            display: flex; /* رص */
+            justify-content: space-between; /* يمين وشمال */
+            align-items: center; /* في النص */
+        }
+      .task-text { /* نص المهمة */
+            cursor: pointer; /* ايد */
+            flex: 1; /* مساحة */
+            text-align: right; /* يمين */
+            word-break: break-word; /* متطلعش برة */
+        }
+      .project-tag { /* تاج مشروعي */
+            background-color: var(--main-color); /* ازرق */
+            color: white; /* ابيض */
+            padding: 5px 10px; /* حجم */
+            border-radius: 20px; /* مدور */
+            font-size: 12px; /* صغير */
+            display: inline-block; /* جنب بعض */
+            margin-bottom: 10px; /* مسافة */
+        }
+        @media (max-width: 600px) { /* موبايل */
+          .cards { flex-direction: column; align-items: center; }
+          .card { width: 80%; }
+        }
     </style>
 </head>
-<body>
-    <header>
-        <button onclick="toggleDark()" style="position: absolute; top: 15px; left: 15px; background-color: rgba(255,255,255,0.2);">🌙</button>
-        <img src="https://via.placeholder.com/200" alt="صورتي">
-        <h1 id="title">عمر ناجح</h1>
-        <p>Front-End Developer</p>
-        <br><button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">تواصل معايا</button>
+<body> <!-- اللي بيظهر للناس -->
+    <header> <!-- Hero Section -->
+        <button onclick="toggleDark()" style="position: absolute; top: 15px; left: 15px; background-color: rgba(255,255,255,0.2);">🌙</button> <!-- دارك مود -->
+        <img src="https://via.placeholder.com/200" alt="دي صورتي"> <!-- صورتي -->
+        <h1 id="title">عمر ناجح</h1> <!-- اسمي -->
+        <p>Front-End Developer | بتعلم وبعمل مواقع</p> <!-- وظيفة -->
+        <p style="margin-top: 15px;"> <!-- لينكات -->
+            <a href="https://github.com" style="color: white; margin: 0 10px; text-decoration: none;">GitHub</a> |
+            <a href="https://google.com" style="color: white; margin: 0 10px; text-decoration: none;">LinkedIn</a>
+        </p>
+        <br>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">تواصل معايا</button> <!-- زرار بينزل للفورم - جديد -->
     </header>
-    <main>
-        <section><h2>مهاراتي</h2><div class="cards"><div class="card">💻<br>HTML</div><div class="card">🎨<br>CSS</div><div class="card">⚡<br>JavaScript</div><div class="card">🔥<br>API</div></div></section>
-        <section class="calculator"><span class="project-tag">مشروع 1</span><h2>آلة حاسبة</h2><input type="number" id="num1" placeholder="رقم 1"><input type="number" id="num2" placeholder="رقم 2"><br><button class="op-btn" onclick="calculate('+')">+</button><button class="op-btn" onclick="calculate('-')">-</button><button class="op-btn" onclick="calculate('*')">*</button><button class="op-btn" onclick="calculate('/')">/</button><h3 id="result">النتيجة: 0</h3></section>
-        <section class="todo-box"><span class="project-tag">مشروع 2</span><h2>قايمة مهامي</h2><p id="taskCounter" style="font-size: 14px; color: gray;">عندك 0 مهام</p><input type="text" id="taskInput" placeholder="اكتب مهمة" style="width: 200px;"><button onclick="addTask()">اضافة</button><input type="text" id="searchInput" placeholder="🔍 ابحث..." style="width: 200px; margin-top: 10px;" onkeyup="filterTasks()"><ul id="taskList"></ul></section>
-        <section class="todo-box"><span class="project-tag">مشروع 3</span><h2>سعر الدولار لايف</h2><h3 id="dollarPrice">بيحمل...</h3><button onclick="getDollarPrice()">حدث السعر</button></section>
-        <section id="contact" class="contact-box"><span class="project-tag" style="background-color: #10b981;">تواصل</span><h2>ابعتلي رسالة</h2><input type="text" id="contactName" placeholder="اسمك"><input type="email" id="contactEmail" placeholder="ايميلك"><textarea id="contactMessage" placeholder="رسالتك..."></textarea><button onclick="sendMessage()" style="width: 95%; background-color: #10b981;">ابعت 🚀</button><p id="contactStatus"></p></section>
+
+    <main> <!-- جسم الموقع -->
+        <section> <!-- مهاراتي -->
+            <h2>مهاراتي</h2> <!-- عنوان -->
+            <div class="cards"> <!-- الكروت -->
+                <div class="card">💻<br>HTML</div> <!-- HTML -->
+                <div class="card">🎨<br>CSS</div> <!-- CSS -->
+                <div class="card">⚡<br>JavaScript</div> <!-- JS -->
+                <div class="card">🔥<br>API</div> <!-- API -->
+            </div>
+        </section>
+
+        <section> <!-- مشاريعي -->
+            <h2>مشاريعي</h2> <!-- عنوان -->
+            <p style="color: gray;">دول المشاريع اللي عملتها وانا بتعلم في الـ Visual</p> <!-- وصف -->
+        </section>
+
+        <section class="calculator"> <!-- مشروع 1 -->
+            <span class="project-tag">مشروع 1</span> <!-- تاج -->
+            <h2>آلة حاسبة بتاعتي</h2> <!-- عنوان -->
+            <input type="number" id="num1" placeholder="رقم 1"> <!-- رقم 1 -->
+            <input type="number" id="num2" placeholder="رقم 2"> <!-- رقم 2 -->
+            <br>
+            <button class="op-btn" onclick="calculate('+')">+</button> <!-- جمع -->
+            <button class="op-btn" onclick="calculate('-')">-</button> <!-- طرح -->
+            <button class="op-btn" onclick="calculate('*')">*</button> <!-- ضرب -->
+            <button class="op-btn" onclick="calculate('/')">/</button> <!-- قسمة -->
+            <h3 id="result">النتيجة: 0</h3> <!-- النتيجة -->
+        </section>
+
+        <section class="todo-box"> <!-- مشروع 2 -->
+            <span class="project-tag">مشروع 2</span> <!-- تاج -->
+            <h2>قايمة مهامي الاحترافية</h2> <!-- عنوان -->
+            <p id="taskCounter" style="font-size: 14px; color: gray;">عندك 0 مهام</p> <!-- عداد -->
+            <input type="text" id="taskInput" placeholder="اكتب مهمة جديدة" style="width: 200px;"> <!-- انبوت -->
+            <button onclick="addTask()">اضافة</button> <!-- اضافة -->
+            <input type="text" id="searchInput" placeholder="🔍 ابحث..." style="width: 200px; margin-top: 10px;" onkeyup="filterTasks()"> <!-- بحث -->
+            <ul id="taskList"></ul> <!-- اللستة -->
+            <p style="font-size: 11px; color: gray; margin-top: 10px;">دبل كليك عشان تعدل المهمة</p> <!-- تلميح -->
+        </section>
+
+        <section class="todo-box"> <!-- مشروع 3 -->
+            <span class="project-tag">مشروع 3 - Live API</span> <!-- تاج -->
+            <h2>سعر الدولار لايف</h2> <!-- عنوان -->
+            <h3 id="dollarPrice">بيحمل...</h3> <!-- السعر -->
+            <button onclick="getDollarPrice()">حدث السعر</button> <!-- تحديث -->
+        </section>
+
+        <section id="contact" class="contact-box"> <!-- فورم التواصل الجديد كله - جديد -->
+            <span class="project-tag" style="background-color: #10b981;">جديد - شغال بجد</span> <!-- تاج جديد -->
+            <h2>ابعتلي رسالة</h2> <!-- عنوان -->
+            <p style="color: gray; font-size: 14px;">الرسالة هتوصلي على ايميلي مباشرة</p> <!-- وصف -->
+            <input type="text" id="contactName" placeholder="اسمك"> <!-- اسمك - جديد -->
+            <input type="email" id="contactEmail" placeholder="ايميلك"> <!-- ايميلك - جديد -->
+            <textarea id="contactMessage" placeholder="اكتب رسالتك هنا..."></textarea> <!-- رسالتك - جديد -->
+            <button onclick="sendMessage()" style="width: 95%; background-color: #10b981;">ابعت الرسالة 🚀</button> <!-- زرار الارسال - جديد -->
+            <p id="contactStatus" style="font-size: 13px; margin-top: 10px;"></p> <!-- حالة الارسال - جديد -->
+        </section>
     </main>
-    <footer style="background-color: var(--card-color); padding: 20px; margin-top: 40px;"><p>مصنوع بـ ❤️ بواسطة عمر - 2026</p></footer>
-    <script>
-        function calculate(op) { let n1 = Number(document.getElementById("num1").value); let n2 = Number(document.getElementById("num2").value); let r=0; if(op=='+') r=n1+n2; else if(op=='-') r=n1-n2; else if(op=='*') r=n1*n2; else if(op=='/') { if(n2==0){alert("مينفعش تقسم على صفر!"); return;} r=n1/n2;} document.getElementById("result").innerHTML="النتيجة: "+r; }
-        window.onload = function() { let s=localStorage.getItem("myTasks"); if(s){document.getElementById("taskList").innerHTML=s; addDeleteEvents();} if(localStorage.getItem("darkMode")=="yes") document.body.classList.add("dark"); updateCounter(); getDollarPrice(); }
-        function addTask() { let input=document.getElementById("taskInput"); let text=input.value; if(text==""){alert("اكتب حاجة!"); return;} let li=document.createElement("li"); li.innerHTML=`<span class="task-text" ondblclick="editTask(this)">${text}</span> <button onclick="deleteTask(this)" style="background:red; padding: 5px 10px; border-radius: 10px;">X</button>`; document.getElementById("taskList").appendChild(li); input.value=""; saveTasks(); updateCounter(); }
-        function deleteTask(b){b.parentElement.remove(); saveTasks(); updateCounter();}
-        function saveTasks(){localStorage.setItem("myTasks", document.getElementById("taskList").innerHTML);}
-        function addDeleteEvents(){ document.querySelectorAll("#taskList button").forEach(btn=>btn.onclick=function(){deleteTask(this)}); document.querySelectorAll(".task-text").forEach(t=>t.ondblclick=function(){editTask(this)}); }
-        async function getDollarPrice(){ document.getElementById("dollarPrice").innerHTML="بيحمل..."; try{ let res=await fetch("https://api.exchangerate-api.com/v4/latest/USD"); let data=await res.json(); document.getElementById("dollarPrice").innerHTML="1 دولار = "+data.rates.EGP+" جنيه"; }catch(e){document.getElementById("dollarPrice").innerHTML="النت فاصل";} }
-        function toggleDark(){ document.body.classList.toggle("dark"); localStorage.setItem("darkMode", document.body.classList.contains("dark")?"yes":"no"); }
-        function updateCounter(){ document.getElementById("taskCounter").innerHTML=`عندك ${document.getElementById("taskList").children.length} مهام`; }
-        function editTask(span){ let n=prompt("عدل المهمة:", span.innerText); if(n && n!=""){span.innerText=n; saveTasks();} }
-        function filterTasks(){ let f=document.getElementById("searchInput").value.toLowerCase(); let tasks=document.getElementById("taskList").getElementsByTagName("li"); for(let i=0;i<tasks.length;i++){ tasks[i].style.display=tasks[i].innerText.toLowerCase().includes(f)?"":"none"; } }
-        function sendMessage(){ let name=document.getElementById("contactName").value; let email=document.getElementById("contactEmail").value; let msg=document.getElementById("contactMessage").value; let status=document.getElementById("contactStatus"); if(name==""||email==""||msg==""){status.innerHTML="❌ املى كل الخانات"; status.style.color="red"; return;} status.innerHTML="⏳ بيبعت..."; fetch(`https://formsubmit.co/ajax/${email}`,{method:"POST", headers:{'Content-Type':'application/json'}, body:JSON.stringify({name:name, message:msg, _subject:`رسالة من ${name}`})}).then(r=>r.json()).then(d=>{status.innerHTML="✅ اتبعتت!"; status.style.color="green"; document.getElementById("contactName").value=""; document.getElementById("contactEmail").value=""; document.getElementById("contactMessage").value="";}).catch(e=>{status.innerHTML="❌ حصل مشكلة"; status.style.color="red";}); }
+
+    <footer style="background-color: var(--card-color); padding: 20px; margin-top: 40px;"> <!-- فوتر -->
+        <p>مصنوع بـ ❤️ بواسطة عمر ناجح - 2026</p> <!-- فوتر -->
+        <p style="font-size: 12px; color: gray;">بتعلم كل يوم حاجة جديدة في الـ Visual Studio Code</p> <!-- جملة -->
+    </footer>
+
+    <script> // البرمجة كلها
+        function sayHello() { // فانكشن قديمة لسة شغالة
+            document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); // انزل للفورم - scrollIntoView = انزل للعنصر - smooth = بسلاسة
+        }
+        function calculate(op) { // آلة حاسبة
+            let n1 = Number(document.getElementById("num1").value); // رقم 1
+            let n2 = Number(document.getElementById("num2").value); // رقم 2
+            let finalResult = 0; // النتيجة
+            if (op == '+') { finalResult = n1 + n2; } else if (op == '-') { finalResult = n1 - n2; } else if (op == '*') { finalResult = n1 * n2; } else if (op == '/') { if (n2 == 0) { alert("مينفعش تقسم على صفر ياعم!"); return; } finalResult = n1 / n2; }
+            document.getElementById("result").innerHTML = "النتيجة: " + finalResult; // اعرض
+        }
+        window.onload = function() { // اول ما تفتح
+            let savedTasks = localStorage.getItem("myTasks"); // هات المهام
+            if (savedTasks) { document.getElementById("taskList").innerHTML = savedTasks; addDeleteEvents(); }
+            if (localStorage.getItem("darkMode") == "yes") { document.body.classList.add("dark"); }
+            updateCounter(); // عداد
+            getDollarPrice(); // دولار
+        }
+        function addTask() { // اضافة مهمة
+            let input = document.getElementById("taskInput"); // انبوت
+            let text = input.value; // كلام
+            if (text == "") { alert("اكتب حاجة الاول!"); return; }
+            let li = document.createElement("li"); // li جديدة
+            li.innerHTML = `<span class="task-text" ondblclick="editTask(this)">${text}</span> <button onclick="deleteTask(this)" style="background:red; padding: 5px 10px; border-radius: 10px;">X</button>`; // مهمة + مسح
+            document.getElementById("taskList").appendChild(li); // ضيفها
+            input.value = ""; // فضي
+            saveTasks(); // احفظ
+            updateCounter(); // حدث
+        }
+        function deleteTask(button) { // مسح
+            button.parentElement.remove(); // امسح
+            saveTasks(); // احفظ
+            updateCounter(); // حدث
+        }
+        function saveTasks() { // حفظ
+            let listHTML = document.getElementById("taskList").innerHTML; // هات HTML
+            localStorage.setItem("myTasks", listHTML); // خزن
+        }
+        function addDeleteEvents() { // رجع الاحداث
+            let buttons = document.querySelectorAll("#taskList button"); // زراير
+            buttons.forEach(btn => { btn.onclick = function() { deleteTask(this); } });
+            let texts = document.querySelectorAll(".task-text"); // نصوص
+            texts.forEach(t => { t.ondblclick = function() { editTask(this); } });
+        }
+        async function getDollarPrice() { // دولار API
+            document.getElementById("dollarPrice").innerHTML = "بيحمل..."; // بيحمل
+            try { // حاول
+                let response = await fetch("https://api.exchangerate-api.com/v4/latest/USD"); // هات
+                let data = await response.json(); // حول
+                let egpPrice = data.rates.EGP; // جنيه
+                document.getElementById("dollarPrice").innerHTML = "1 دولار = " + egpPrice + " جنيه"; // اعرض
+            } catch (error) { document.getElementById("dollarPrice").innerHTML = "النت فاصل، جرب تاني"; }
+        }
+        function toggleDark() { // دارك مود
+            document.body.classList.toggle("dark"); // شيل وحط
+            if (document.body.classList.contains("dark")) { localStorage.setItem("darkMode", "yes"); } else { localStorage.setItem("darkMode", "no"); }
+        }
+        function updateCounter() { // عداد
+            let count = document.getElementById("taskList").children.length; // عد
+            document.getElementById("taskCounter").innerHTML = `عندك ${count} مهام`; // اعرض
+        }
+        function editTask(span) { // تعديل
+            let newText = prompt("عدل المهمة:", span.innerText); // اسأل
+            if (newText && newText!= "") { span.innerText = newText; saveTasks(); }
+        }
+        function filterTasks() { // فلتر
+            let filter = document.getElementById("searchInput").value.toLowerCase(); // كلام البحث
+            let tasks = document.getElementById("taskList").getElementsByTagName("li"); // مهام
+            for (let i = 0; i < tasks.length; i++) { // لف
+                let txt = tasks[i].innerText.toLowerCase(); // نص
+                if (txt.includes(filter)) { tasks[i].style.display = ""; } else { tasks[i].style.display = "none"; }
+            }
+        }
+        function sendMessage() { // فانكشن ارسال الرسالة الجديدة - جديدة كلها
+            let name = document.getElementById("contactName").value; // هات الاسم - جديد
+            let email = document.getElementById("contactEmail").value; // هات الايميل - جديد
+            let msg = document.getElementById("contactMessage").value; // هات الرسالة - جديد
+            let status = document.getElementById("contactStatus"); // مكان حالة الارسال - جديد
+
+            if (name == "" || email == "" || msg == "") { // لو اي حاجة فاضية
+                status.innerHTML = "❌ املى كل الخانات الاول"; // قول املى الخانات
+                status.style.color = "red"; // لون احمر
+                return; // وقف
+            }
+
+            status.innerHTML = "⏳ بيبعت..."; // قول بيبعت
+            status.style.color = "gray"; // رمادي
+
+            // ده هيبعت الايميل بجد عن طريق موقع formsubmit - ببلاش ومن غير باك اند
+            fetch(`https://formsubmit.co/ajax/${email}`, { // ابعت لايميله هو - هيوصله - fetch تاني بس المرة دي بنبعت مش بنستقبل
+                method: "POST", // نوع الطلب - POST يعني ببعت بيانات
+                headers: { 'Content-Type': 'application/json' }, // نوع البيانات
+                body: JSON.stringify({ name: name, message: msg, _subject: `رسالة جديدة من ${name} من موقعك!` }) // البيانات اللي هتتبعت - stringify = حولها لنص
+            })
+           .then(response => response.json()) // حول الرد لـ JSON
+           .then(data => { // لو نجح
+                status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; // قول اتبعتت
+                status.style.color = "green"; // اخضر
+                document.getElementById("contactName").value = ""; // فضي الاسم
+                document.getElementById("contactEmail").value = ""; // فضي الايميل
+                document.getElementById("contactMessage").value = ""; // فضي الرسالة
+            })
+           .catch(error => { // لو فشل
+                status.innerHTML = "❌ حصل مشكلة، جرب تاني"; // قول حصل مشكلة
+                status.style.color = "red"; // احمر
+            });
+        }
     </script>
 </body>
 </html>
