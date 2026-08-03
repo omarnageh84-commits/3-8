@@ -49,14 +49,14 @@
             width: 150px; /* حجم */
             height: 150px; /* حجم */
             object-fit: cover; /* متتعوجش */
-            animation: float 3s ease-in-out infinite; /* بتطلع وتنزل - جديد */
+            animation: float 3s ease-in-out infinite; /* بتطلع وتنزل */
         }
         @keyframes float { /* انيميشن الطلوع والنزول */
             0% { transform: translateY(0px); } /* عادي */
             50% { transform: translateY(-10px); } /* فوق */
             100% { transform: translateY(0px); } /* عادي تاني */
         }
-      .typing { /* الكتابة اللي بتتكتب لوحدها */
+     .typing { /* الكتابة اللي بتتكتب لوحدها */
             border-right: 3px solid white; /* مؤشر كتابة */
             animation: blink 0.7s infinite; /* بيطفي وينور */
         }
@@ -65,14 +65,14 @@
             50% { border-color: white; } /* ابيض */
             100% { border-color: transparent; } /* شفاف */
         }
-      .cards { /* كروت المهارات */
+     .cards { /* كروت المهارات */
             display: flex; /* رص جنب بعض */
             justify-content: center; /* في النص */
             gap: 15px; /* مسافة */
             margin-top: 20px; /* مسافة */
             flex-wrap: wrap; /* انزل تحت */
         }
-      .card { /* الكارت الواحد */
+     .card { /* الكارت الواحد */
             background-color: var(--card-color); /* متغير */
             padding: 20px; /* مسافة */
             border-radius: 15px; /* حواف */
@@ -81,7 +81,7 @@
             cursor: pointer; /* ايد */
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* ظل */
         }
-      .card:hover { /* لما تحط الماوس */
+     .card:hover { /* لما تحط الماوس */
             transform: translateY(-10px) scale(1.05); /* يطلع ويكبر */
             background-color: var(--main-color); /* ازرق */
             color: white; /* ابيض */
@@ -107,13 +107,13 @@
             transform: translateY(20px); /* نازل لتحت */
             animation: fadeUp 0.8s forwards; /* انيميشن يطلع */
         }
-        section:nth-child(1) { animation-delay: 0.2s; } /* اول سكشن يظهر بسرعة */
-        section:nth-child(2) { animation-delay: 0.4s; } /* تاني سكشن بعديه */
-        section:nth-child(3) { animation-delay: 0.6s; } /* وهكذا */
+        section:nth-child(1) { animation-delay: 0.2s; } /* اول سكشن */
+        section:nth-child(2) { animation-delay: 0.4s; } /* تاني سكشن */
+        section:nth-child(3) { animation-delay: 0.6s; } /* تالت سكشن */
         @keyframes fadeUp { /* انيميشن الظهور */
             to { opacity: 1; transform: translateY(0); } /* يظهر ويطلع */
         }
-      .calculator,.todo-box,.contact-box,.stats-box { /* بوكسات المشاريع - زودنا stats-box جديد */
+     .calculator,.todo-box,.contact-box,.stats-box,.timeline-box { /* بوكسات - زودنا timeline-box جديد */
             background-color: var(--card-color); /* متغير */
             padding: 25px; /* مسافة */
             border-radius: 20px; /* حواف */
@@ -122,14 +122,46 @@
             max-width: 90%; /* موبايل */
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ظل */
         }
-       .stat-number { /* رقم الاحصائية - جديد */
+      .stat-number { /* رقم الاحصائية */
             font-size: 40px; /* كبير جدا */
             font-weight: bold; /* تخين */
             color: var(--main-color); /* ازرق */
             display: block; /* سطر لوحده */
         }
-       .stat-label { /* وصف الاحصائية - جديد */
+      .stat-label { /* وصف الاحصائية */
             font-size: 14px; /* صغير */
+            color: gray; /* رمادي */
+        }
+      .timeline-item { /* كل حدث في التايملاين - جديد كله */
+            text-align: right; /* يمين */
+            border-right: 4px solid var(--main-color); /* خط ازرق على اليمين */
+            padding-right: 15px; /* مسافة من الخط */
+            margin: 20px 0; /* مسافة فوق وتحت */
+            position: relative; /* عشان النقطة */
+        }
+      .timeline-item::before { /* النقطة المدورة - جديد */
+            content: ""; /* محتوى فاضي */
+            position: absolute; /* مطلق */
+            right: -10px; /* برة شوية */
+            top: 5px; /* من فوق */
+            width: 16px; /* عرض */
+            height: 16px; /* طول */
+            background-color: var(--main-color); /* ازرق */
+            border-radius: 50%; /* مدور */
+            border: 3px solid white; /* برواز ابيض */
+        }
+      .timeline-date { /* تاريخ الحدث - جديد */
+            font-size: 12px; /* صغير */
+            color: var(--main-color); /* ازرق */
+            font-weight: bold; /* تخين */
+        }
+      .timeline-title { /* عنوان الحدث - جديد */
+            font-size: 16px; /* وسط */
+            font-weight: bold; /* تخين */
+            margin: 5px 0; /* مسافة */
+        }
+      .timeline-desc { /* وصف الحدث - جديد */
+            font-size: 13px; /* صغير */
             color: gray; /* رمادي */
         }
         input, textarea { /* الانبوت */
@@ -143,11 +175,11 @@
             font-family: Arial; /* خط */
         }
         textarea { height: 80px; resize: none; }
-      .op-btn { width: 65px; background-color: #222; }
-      .todo-box ul { list-style: none; padding: 0; }
-      .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-      .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
-      .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
+     .op-btn { width: 65px; background-color: #222; }
+     .todo-box ul { list-style: none; padding: 0; }
+     .todo-box li { background-color: var(--bg-color); padding: 12px; margin: 8px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+     .task-text { cursor: pointer; flex: 1; text-align: right; word-break: break-word; }
+     .project-tag { background-color: var(--main-color); color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 10px; }
         @media (max-width: 600px) {.cards { flex-direction: column; align-items: center; }.card { width: 80%; } }
     </style>
 </head>
@@ -178,22 +210,47 @@
             </div>
         </section>
 
-        <section class="stats-box"> <!-- بوكس الاحصائيات الجديد - جديد كله -->
+        <section class="stats-box"> <!-- بوكس الاحصائيات -->
             <span class="project-tag" style="background-color: #f59e0b;">احصائياتي</span> <!-- تاج -->
             <h2>ارقامي</h2> <!-- عنوان -->
             <div class="cards"> <!-- كروت الارقام -->
                 <div class="card"> <!-- كارت زوار -->
-                    <span class="stat-number" id="visitCount">0</span> <!-- عدد الزوار - جديد -->
+                    <span class="stat-number" id="visitCount">0</span> <!-- عدد الزوار -->
                     <span class="stat-label">زائر للموقع</span> <!-- وصف -->
                 </div>
                 <div class="card"> <!-- كارت مشاريع -->
-                    <span class="stat-number" id="projectCount">0</span> <!-- عدد المشاريع - جديد -->
+                    <span class="stat-number" id="projectCount">0</span> <!-- عدد المشاريع -->
                     <span class="stat-label">مشروع</span> <!-- وصف -->
                 </div>
                 <div class="card"> <!-- كارت ساعات -->
-                    <span class="stat-number" id="codeHours">0</span> <!-- ساعات كود - جديد -->
+                    <span class="stat-number" id="codeHours">0</span> <!-- ساعات كود -->
                     <span class="stat-label">ساعة كود</span> <!-- وصف -->
                 </div>
+            </div>
+        </section>
+
+        <section class="timeline-box"> <!-- بوكس التايملاين الجديد - جديد كله -->
+            <span class="project-tag" style="background-color: #8b5cf6;">رحلتي</span> <!-- تاج -->
+            <h2>رحلتي في البرمجة</h2> <!-- عنوان -->
+            <div class="timeline-item"> <!-- حدث 1 -->
+                <div class="timeline-date">يناير 2024</div> <!-- تاريخ -->
+                <div class="timeline-title">بدأت اتعلم HTML</div> <!-- عنوان -->
+                <div class="timeline-desc">اول مرة اكتب كود وافتحه في المتصفح</div> <!-- وصف -->
+            </div>
+            <div class="timeline-item"> <!-- حدث 2 -->
+                <div class="timeline-date">مارس 2024</div> <!-- تاريخ -->
+                <div class="timeline-title">اتعلمت CSS</div> <!-- عنوان -->
+                <div class="timeline-desc">خليت موقعي ملون وشكله حلو</div> <!-- وصف -->
+            </div>
+            <div class="timeline-item"> <!-- حدث 3 -->
+                <div class="timeline-date">يونيو 2024</div> <!-- تاريخ -->
+                <div class="timeline-title">دخلت JavaScript</div> <!-- عنوان -->
+                <div class="timeline-desc">الموقع بقى بيتفاعل وبيحسب ويخزن</div> <!-- وصف -->
+            </div>
+            <div class="timeline-item"> <!-- حدث 4 -->
+                <div class="timeline-date">اغسطس 2026 - النهارده</div> <!-- تاريخ -->
+                <div class="timeline-title">عملت Portfolio كامل</div> <!-- عنوان -->
+                <div class="timeline-desc">موقع فيه API ودارك مود وتاسكات وكل حاجة من على الفون</div> <!-- وصف -->
             </div>
         </section>
 
@@ -234,7 +291,7 @@
         </section>
 
         <section id="contact" class="contact-box"> <!-- فورم التواصل -->
-            <span class="project-tag" style="background-color: #10b981;">جديد - شغال بجد</span> <!-- تاج جديد -->
+            <span class="project-tag" style="background-color: #10b981;">تواصل</span> <!-- تاج -->
             <h2>ابعتلي رسالة</h2> <!-- عنوان -->
             <p style="color: gray; font-size: 14px;">الرسالة هتوصلي على ايميلي مباشرة</p> <!-- وصف -->
             <input type="text" id="contactName" placeholder="اسمك"> <!-- اسمك -->
@@ -255,48 +312,41 @@
         let i = 0; // عداد
         function typeWriter() { // فانكشن الكتابة
             if (i < textToType.length) { // لو لسة في حروف
-                document.getElementById("typingText").innerHTML += textToType.charAt(i); // زود حرف - charAt = هات الحرف رقم i
+                document.getElementById("typingText").innerHTML += textToType.charAt(i); // زود حرف
                 i++; // زود العداد
-                setTimeout(typeWriter, 100); // استنى 100 ملي ثانية واكتب الحرف اللي بعده - setTimeout = استنى شوية
+                setTimeout(typeWriter, 100); // استنى شوية
             }
         }
-
-        function animateNumber(id, target) { // فانكشن تحريك الارقام الجديدة - جديدة
+        function animateNumber(id, target) { // فانكشن تحريك الارقام
             let current = 0; // ابدأ من صفر
-            let step = target / 50; // اقسم الهدف على 50 خطوة - عشان يتحرك ناعم
+            let step = target / 50; // خطوة
             let element = document.getElementById(id); // هات العنصر
-            let timer = setInterval(() => { // كرر كل شوية - setInterval = كرر
-                current += step; // زود الرقم
-                if (current >= target) { // لو وصل للهدف
-                    current = target; // ثبته على الهدف
-                    clearInterval(timer); // وقف التكرار - clearInterval = وقف
+            let timer = setInterval(() => { // كرر
+                current += step; // زود
+                if (current >= target) { // لو وصل
+                    current = target; // ثبته
+                    clearInterval(timer); // وقف
                 }
-                element.innerHTML = Math.floor(current); // اعرض الرقم - floor = شيل الكسور
-            }, 30); // كل 30 ملي ثانية
+                element.innerHTML = Math.floor(current); // اعرض
+            }, 30); // كل 30 ملي
         }
-
         window.onload = function() { // اول ما تفتح
             setTimeout(() => { // استنى ثانية
                 document.getElementById("loader").style.display = "none"; // اخفي اللودينج
-                typeWriter(); // ابدأ الكتابة المتحركة
-                // شغل عدادات الارقام الجديدة - جديد
-                animateNumber("visitCount", 124); // عد لحد 124 زائر
-                animateNumber("projectCount", 3); // عد لحد 3 مشاريع
-                animateNumber("codeHours", 84); // عد لحد 84 ساعة
-            }, 800); // 800 ملي ثانية
-
+                typeWriter(); // ابدأ الكتابة
+                animateNumber("visitCount", 124); // عد لحد 124
+                animateNumber("projectCount", 3); // عد لحد 3
+                animateNumber("codeHours", 84); // عد لحد 84
+            }, 800); // 800 ملي
             let savedTasks = localStorage.getItem("myTasks"); // هات المهام
             if (savedTasks) { document.getElementById("taskList").innerHTML = savedTasks; addDeleteEvents(); }
             if (localStorage.getItem("darkMode") == "yes") { document.body.classList.add("dark"); }
             updateCounter(); // عداد
             getDollarPrice(); // دولار
-
-            // عداد زوار حقيقي بسيط - جديد
-            let visits = localStorage.getItem("visits"); // هات عدد الزيارات القديم - getItem = هات
-            if (!visits) { visits = 0; } // لو اول مرة خليه صفر
-            visits = Number(visits) + 1; // زود واحد - Number = حوله لرقم
-            localStorage.setItem("visits", visits); // خزنه تاني - setItem = خزن
-            console.log("انت زرت الموقع " + visits + " مرة"); // اطبع في الكونسول
+            let visits = localStorage.getItem("visits"); // هات الزيارات
+            if (!visits) { visits = 0; } // لو اول مرة صفر
+            visits = Number(visits) + 1; // زود واحد
+            localStorage.setItem("visits", visits); // خزنه
         }
         function calculate(op) { // آلة حاسبة
             let n1 = Number(document.getElementById("num1").value); // رقم 1
@@ -368,8 +418,8 @@
             if (name == "" || email == "" || msg == "") { status.innerHTML = "❌ املى كل الخانات الاول"; status.style.color = "red"; return; }
             status.innerHTML = "⏳ بيبعت..."; status.style.color = "gray";
             fetch(`https://formsubmit.co/ajax/${email}`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, message: msg, _subject: `رسالة جديدة من ${name} من موقعك!` }) })
-        .then(response => response.json()).then(data => { status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; status.style.color = "green"; document.getElementById("contactName").value = ""; document.getElementById("contactEmail").value = ""; document.getElementById("contactMessage").value = ""; })
-        .catch(error => { status.innerHTML = "❌ حصل مشكلة، جرب تاني"; status.style.color = "red"; });
+      .then(response => response.json()).then(data => { status.innerHTML = "✅ اتبعتت! هرد عليك قريب يا " + name; status.style.color = "green"; document.getElementById("contactName").value = ""; document.getElementById("contactEmail").value = ""; document.getElementById("contactMessage").value = ""; })
+      .catch(error => { status.innerHTML = "❌ حصل مشكلة، جرب تاني"; status.style.color = "red"; });
         }
     </script>
 </body>
